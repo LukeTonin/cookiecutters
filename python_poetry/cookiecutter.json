@@ -1,0 +1,16 @@
+{
+    "project_name": "Python Package",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "version": "0.1.0",
+    "author": "Name Example",
+    "author_email": "email@example.com",
+    "repository_url": "",
+    "project_short_description": "",
+    "python_version": "^3.9",
+    "license": [
+        "Proprietary",
+        "MIT license", "BSD license", "ISC license",
+        "Apache Software License 2.0", "GNU General Public License v3"
+        ],
+    "black_line_length": "default"
+}
