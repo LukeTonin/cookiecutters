@@ -1,14 +1,20 @@
 #!/usr/bin/env python
 import os
+import shutil
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
 
-def remove_file(filepath):
-    os.remove(os.path.join(PROJECT_DIRECTORY, filepath))
+def remove(path):
+    shutil.rmtree(os.path.join(PROJECT_DIRECTORY, path))
 
 
-if __name__ == '__main__':
+def main():
+    if "{{ cookiecutter.add_data_directory }}" == "no":
+        remove("data")
+    if "{{ cookiecutter.add_notebooks_directory }}" == "no":
+        remove("notebooks")
 
-    if '{{ cookiecutter.license }}' == 'Proprietary':
-        remove_file('LICENSE')
+
+if __name__ == "__main__":
+    main()
