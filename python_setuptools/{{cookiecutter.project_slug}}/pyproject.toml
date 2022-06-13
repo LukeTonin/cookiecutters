@@ -1,0 +1,22 @@
+[project]
+name = "{{ cookiecutter.project_slug }}"
+license = {file = "LICENSE"}
+description = "{{ cookiecutter.project_short_description }}"
+readme = "README.md"
+dependencies = []
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = ["black", "coverage"]
+
+[project.scripts]
+
+[tool.black]
+{% if cookiecutter.black_line_length != "default" %}line-length = {{ cookiecutter.black_line_length }} {%- endif %}
+
+[tool.setuptools.dynamic]
+version = {attr = "{{ cookiecutter.project_slug }}.__version__"}
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

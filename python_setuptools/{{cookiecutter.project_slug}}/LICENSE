@@ -108,4 +108,14 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <http://www.gnu.org/philosophy/why-not-lgpl.html>.
+
+{% elif cookiecutter.license == 'Proprietary' -%}
+Copyright (c) {% now 'local', '%Y' %}, {{ cookiecutter.author }}
+
+All rights reserved.  This software is protected by copyright
+law and international treaties.  No part of this software / document
+may be reproduced or distributed in any form or by any means,
+whether transiently or incidentally to some other use of this software,
+without the written permission of the copyright owner.
 {% endif %}
+
