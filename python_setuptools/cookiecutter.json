@@ -11,7 +11,5 @@
         ],
     "black_line_length": "default",
     "add_data_directory": ["yes", "no"],
-    "add_notebooks_directory": ["yes", "no"],
-    "add_conf_directory": ["yes", "no"],
-    "add_logs_directory": ["yes", "no"]
+    "add_notebooks_directory": ["yes", "no"]
 }

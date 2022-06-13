@@ -14,10 +14,6 @@ def main():
         remove("data")
     if "{{ cookiecutter.add_notebooks_directory }}" == "no":
         remove("notebooks")
-    if "{{ cookiecutter.add_conf_directory }}" == "no":
-        remove("conf")
-    if "{{ cookiecutter.add_logd_directory }}" == "no":
-        remove("logs")
 
 
 if __name__ == "__main__":
