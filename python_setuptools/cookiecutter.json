@@ -10,6 +10,5 @@
         "Apache Software License 2.0", "GNU General Public License v3"
         ],
     "black_line_length": "default",
-    "add_data_directory": ["yes", "no"],
     "add_notebooks_directory": ["yes", "no"]
 }

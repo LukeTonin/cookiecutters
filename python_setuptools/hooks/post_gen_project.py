@@ -10,8 +10,6 @@ def remove(path):
 
 
 def main():
-    if "{{ cookiecutter.add_data_directory }}" == "no":
-        remove("data")
     if "{{ cookiecutter.add_notebooks_directory }}" == "no":
         remove("notebooks")
 
