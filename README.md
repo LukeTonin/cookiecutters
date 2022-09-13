@@ -1,6 +1,7 @@
 # Cookiecutters
 
-A cookie cutter can be seen as a template used to create directories.  
+A cookie cutter is a directory template used to create directories with a predefined format.  
+For instance, this repository contains cookie cutters to build python packages.
 More information can be found here: https://github.com/cookiecutter/cookiecutter
 
 This repository contains some useful cookiecutters that can be used with the cookiecutter application.
