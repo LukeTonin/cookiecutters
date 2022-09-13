@@ -21,5 +21,5 @@ cookiecutter /path/to/cookiecutters/cookiecutters --directory="python_setuptools
 
 This cookie cutter will create a directory that looks something like this:
 
-<img src="./docs/images/python_setuptools_example" height="300" />
+<img src="./docs/images/python_setuptools_example.png" height="300" />
 
