@@ -16,5 +16,10 @@ To apply one of the cookiecutters in this repository, run the following command.
 in the working directory of the command line. This examples creates a directory based on the python_setuptools template.
 
 ```
-cookiecutter /path/to/cookiecutters_repo --directory="python_setuptools"
+cookiecutter /path/to/cookiecutters/cookiecutters --directory="python_setuptools"
 ```
+
+This cookie cutter will create a directory that looks something like this:
+
+<img src="./docs/images/python_setuptools_example" height="300" />
+
