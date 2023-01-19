@@ -27,7 +27,7 @@ check-format: ## check style with black
 	black --check src
 
 test: ## run tests quickly with the default Python
-	python -m pytest src/tests
+	python -m pytest src/{{ cookiecutter.project_slug }}/tests
 
 coverage: ## check code coverage quickly with the default Python
 	coverage run --source {{ cookiecutter.project_slug }} -m pytest

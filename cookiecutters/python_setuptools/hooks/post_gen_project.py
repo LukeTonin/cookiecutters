@@ -11,7 +11,7 @@ def remove(path):
 
 def main():
     if "{{ cookiecutter.add_notebooks_directory }}" == "no":
-        remove("notebooks")
+        remove("src/{{ cookiecutter.project_slug }}/notebooks")
 
 
 if __name__ == "__main__":
