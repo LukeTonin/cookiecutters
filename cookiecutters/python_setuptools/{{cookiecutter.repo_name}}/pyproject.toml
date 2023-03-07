@@ -7,7 +7,7 @@ dependencies = []
 dynamic = ["version"]
 
 [project.optional-dependencies]
-dev = ["black", "coverage"]
+dev = ["black", "coverage", "test"]
 
 [project.scripts]
 
