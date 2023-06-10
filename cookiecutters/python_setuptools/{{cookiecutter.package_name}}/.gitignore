@@ -105,8 +105,23 @@ ENV/
 .vscode/
 .idea/
 
+# ignore everything in the following folders
+data/**
+logs/**
+
+# except their sub-folders
+!data/**/
+!logs/**/
+
 # also keep all .gitkeep files
 !.gitkeep
 
 # MacOS files
 .DS_Store
+
+# ignore notebooks (notebooks should probably not be stored with github
+# unless they are part of the production execution)
+notebooks/**
+# except these which should be version controlled.
+# !notebooks/example.ipynb
+!notebooks/.gitkeep

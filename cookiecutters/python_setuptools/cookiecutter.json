@@ -1,7 +1,6 @@
 {
     "project_name": "Python Package", 
-    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}", 
-    "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '-').replace('_', '-') }}", 
+    "package_name": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}", 
     "author": "", 
     "version": "0.1.0", 
     "project_short_description": "", 
@@ -13,7 +12,7 @@
         "Apache Software License 2.0"  , 
         "GNU General Public License v3"  
     ], 
-    "black_line_length": "default", 
-    "add_notebooks_directory": ["no", "yes"], 
+    "black_line_length": 110, 
+    "add_notebooks_directory": ["yes", "no"], 
     "add_changelog": ["no", "yes"]
 }

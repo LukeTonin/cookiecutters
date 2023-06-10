@@ -3,7 +3,7 @@ import sys
 import logging
 from os.path import join, dirname
 
-from {{cookiecutter.project_slug}} import ROOT_DIR
+from {{cookiecutter.package_name}} import ROOT_DIR
 
 class ModifyModuleName(logging.Filter):
     def filter(self, record):

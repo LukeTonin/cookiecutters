@@ -30,10 +30,10 @@ format: ## check style with black
 	black src
 
 test: ## run tests quickly with the default Python
-	python -m pytest src/{{ cookiecutter.project_slug }}/tests
+	python -m pytest src/{{ cookiecutter.package_name }}/tests
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source {{ cookiecutter.project_slug }} -m pytest
+	coverage run --source src/{{ cookiecutter.package_name }} -m pytest
 	coverage report -m
 	coverage html
 
@@ -43,7 +43,14 @@ dist: clean ## builds source and wheel package
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
-	pip install .
+	pip install --extra-index-url https://$(ARTIFACTORY_USER):$(ARTIFACTORY_PASSWORD)@fundingcircle.jfrog.io/fundingcircle/api/pypi/pypi/simple .
 
 install-dev: clean ## install the package to the active Python's site-packages
-	pip install .[dev]
+	pip install --extra-index-url https://$(ARTIFACTORY_USER):$(ARTIFACTORY_PASSWORD)@fundingcircle.jfrog.io/fundingcircle/api/pypi/pypi/simple .[dev]
+
+release: dist
+	twine upload --repository-url https://fundingcircle.jfrog.io/fundingcircle/api/pypi/pypi-local -u $(ARTIFACTORY_USER) -p $(ARTIFACTORY_PASSWORD) dist/*
+
+snapshot-release:
+	twine upload --repository-url https://fundingcircle.jfrog.io/fundingcircle/api/pypi/pypi-snapshots-local -u $(ARTIFACTORY_USER) -p $(ARTIFACTORY_PASSWORD) dist/*
+

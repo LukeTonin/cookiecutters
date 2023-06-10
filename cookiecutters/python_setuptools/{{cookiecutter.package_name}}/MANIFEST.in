@@ -1,0 +1,2 @@
+recursive-include src/{{ cookiecutter.package_name }} *.json
+recursive-include src/{{ cookiecutter.package_name }} *.yaml

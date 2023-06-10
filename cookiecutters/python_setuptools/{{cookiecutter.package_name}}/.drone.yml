@@ -1,0 +1,114 @@
+---
+kind: pipeline
+type: docker
+name: build
+
+platform:
+  os: linux
+  arch: amd64
+
+concurrency:
+  limit: 3
+
+anchors:
+  artifactory_credentials: &artifactory_credentials
+    ARTIFACTORY_USER:
+      from_secret: artifactory_user
+    ARTIFACTORY_PASSWORD:
+      from_secret: artifactory_password
+    ARTIFACTORY_TOKEN:
+      from_secret: artifactory_token
+
+  python_image: &python_image
+    image: python:3.10.8-slim-buster
+
+  when_feature_branch: &when_feature_branch
+    when:
+      event:
+        - push
+      branch:
+        exclude:
+          - main
+
+  when_master_branch: &when_main_branch
+    when:
+      branch:
+        - main
+      event:
+        - push
+
+steps:
+  - name: install_and_test
+    <<: *python_image
+    environment:
+      <<: *artifactory_credentials
+    commands:
+      - apt-get update && apt-get install --no-install-recommends -yq make
+      - make install-dev check-format test
+
+  - name: snapshot_release
+    <<: *python_image
+    environment:
+      <<: *artifactory_credentials
+    commands:
+      - apt-get update && apt-get install --no-install-recommends -yq make
+      - python -m pip install twine
+      - python setup.py egg_info --tag-build .dev${DRONE_BUILD_NUMBER} sdist
+      - python setup.py egg_info --tag-build .dev${DRONE_BUILD_NUMBER} bdist_wheel
+      - make snapshot-release
+    depends_on:
+      - install_and_test
+    <<: *when_main_branch
+
+trigger:
+  event:
+    - push
+
+---
+kind: pipeline
+type: docker
+name: tag
+
+platform:
+  os: linux
+  arch: amd64
+
+concurrency:
+  limit: 1
+
+anchors:
+  artifactory_credentials: &artifactory_credentials
+    ARTIFACTORY_USER:
+      from_secret: artifactory_user
+    ARTIFACTORY_PASSWORD:
+      from_secret: artifactory_password
+    ARTIFACTORY_TOKEN:
+      from_secret: artifactory_token
+
+  python_image: &python_image
+    image: python:3.10.8-slim-buster
+
+steps:
+  - name: release
+    <<: *python_image
+    environment:
+      <<: *artifactory_credentials
+    commands:
+      - apt-get update && apt-get install --no-install-recommends -yq make
+      - python -m pip install twine
+      - make release
+
+  - name: github_status
+    image: quay.io/fundingcircle/drone-github-status:latest
+    pull: always
+    settings:
+      env: production
+      locale: UK
+    depends_on:
+      - release
+
+trigger:
+  event:
+    - tag
+  ref:
+    - refs/tags/v*.*.*

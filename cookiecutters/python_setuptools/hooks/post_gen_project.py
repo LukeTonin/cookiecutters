@@ -15,7 +15,7 @@ def remove_file(path: str) -> None:
 
 def main():
     if "{{ cookiecutter.add_notebooks_directory }}" == "no":
-        remove_dir("src/{{ cookiecutter.project_slug }}/notebooks")
+        remove_dir("notebooks")
 
     if "{{ cookiecutter.add_changelog }}" == "no":
         remove_file("CHANGELOG.md")
